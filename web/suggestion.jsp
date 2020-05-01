@@ -1,10 +1,10 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 
 <head>
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <title>我的基地</title>
+    <title>index</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora">
     <link rel="stylesheet" href="assets/fonts/fontawesome-all.min.css">
@@ -27,10 +27,13 @@
     <link rel="stylesheet" href="assets/css/Sidebar-Menu.css">
     <link rel="stylesheet" href="assets/css/Simple-Slider.css">
     <link rel="stylesheet" href="assets/css/styles.css">
+    <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">
+
+
 </head>
 
 <body>
-    <nav class="navbar navbar-light navbar-expand-md fixed-top border rounded shadow-sm navigation-clean-button">
+    <nav class="navbar navbar-light navbar-expand-md fixed-top navigation-clean-button">
         <div class="container"><img id="icon" src="assets/img/icon.png"><a class="navbar-brand" href="#">马蜂窝</a><button data-toggle="collapse" class="navbar-toggler" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div
                 class="collapse navbar-collapse" id="navcol-1">
@@ -42,32 +45,50 @@
                         <div class="dropdown-menu" role="menu"><a class="dropdown-item" role="presentation" href="#">自由行</a><a class="dropdown-item" role="presentation" href="#">跟团游</a><a class="dropdown-item" role="presentation" href="#">当地游</a><a class="dropdown-item" role="presentation"
                                 href="#">邮轮</a><a class="dropdown-item" role="presentation" href="#">签证</a></div>
                     </li>
-                </ul><span class="navbar-text"><a href="mine.jsp">${currentName==null?"":'欢迎您：'.concat(currentName)}</a></span><span class="navbar-text actions"> <a class="login" href="userlogin.jsp">登录</a><a class="btn btn-light action-button" role="button" href="register.jsp">注册</a></span></div>
+                </ul><span class="navbar-text">${currentName==null?"":'欢迎您：'.concat(currentName)}</span><span class="navbar-text actions"> <a class="login" href="userlogin.jsp">登录</a><a class="btn btn-light action-button" role="button" href="register.jsp">注册</a></span></div>
         </div>
     </nav>
-    <div class="article-list">
-        <div class="container">
-            <div class="intro">
-                <h2 class="text-center">Latest Articles</h2>
-                <p class="text-center"><a href="mine.jsp">${currentName==null?"":currentName}</a>，这里是你的【窝】！
 
-                    是记录你的旅行记忆，结交各路豪杰的地盘儿。现在开启马蜂窝旅程！<a href="logoffServlet">点我注销</a></p>
+    <div class="container" style="margin-top: 150px;">
+        <div class="jumbotron">
+            <h1>开始定制你的私人旅程</h1>
+
+            <p><a href="btn btn-primary btn-lg" role="button"></a>查看更多</p>
+        </div>
+    </div>
+
+
+
+    <div class="container" style="margin-top: 20px">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">您选择的景点</h3>
             </div>
-            <div class="row articles">
-                <div class="col-sm-6 col-md-4 item"><a href="informationofmine.jsp"><img class="img-fluid" src="assets/img/desk.jpg"></a>
-                    <h3 class="name">我的窝</h3>
-                    <p class="description">快来看看你温馨的窝，来进一步完善个人信息</p><a class="action" href="#"><i class="fa fa-arrow-circle-right"></i></a></div>
-                <div
-                    class="col-sm-6 col-md-4 item"><a href="#"><img class="img-fluid" src="assets/img/beach.jpg"></a>
-                    <h3 class="name">我的游记</h3>
-                    <p class="description">写下你的游记，记录自己的足迹，让生活充满仪式感</p><a class="action" href="#"><i class="fa fa-arrow-circle-right"></i></a></div>
-            <div
-                class="col-sm-6 col-md-4 item"><a href="#"><img class="img-fluid" src="assets/img/minibus.jpeg"></a>
-                <h3 class="name">我最爱的</h3>
-                <p class="description">总有些地方让你难以忘怀，开启你的宝贵回忆</p><a class="action" href="#"><i class="fa fa-arrow-circle-right"></i></a></div>
+            <div class="panel-body">
+                <c:forEach var="u" items="${sceneries}">
+                    ${u}
+                </c:forEach>
+            </div>
+        </div>
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h3 class="panel-title">总天数</h3>
+            </div>
+            <div class="panel-body">
+                ${days}天
+            </div>
+        </div>
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <h3 class="panel-title">查看路线详情</h3>
+            </div>
+            <div class="panel-body">
+                <a href="${introduction}">查看详情</a>
+            </div>
+        </div>
     </div>
-    </div>
-    </div>
+
+
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.8.2/js/lightbox.min.js"></script>
